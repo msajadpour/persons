@@ -26,7 +26,8 @@ function validation() {
         
     } else {
         data.push(skillList)
-        console.log(data);
+        localStorage.setItem('personsData' , JSON.stringify(data))
+        console.log(JSON.parse(localStorage.getItem("personsData")))
     }
 
 }
