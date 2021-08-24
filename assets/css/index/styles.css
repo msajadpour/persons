@@ -3,6 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     direction: rtl;
+    font-family: iranSans;
+}
+@font-face {
+    font-family: iranSans;
+    src: url(../../fonts/iranSans/IRANSansWeb_Light.ttf);
 }
 body {
     color: #000;
