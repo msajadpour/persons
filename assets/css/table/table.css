@@ -1,0 +1,19 @@
+@font-face {
+    font-family: iranSans;
+    src: url(../../fonts/iranSans/IRANSansWeb_Light.ttf);
+}
+*{
+    direction: rtl;
+    font-family: iranSans;
+}
+tr{
+    text-align: center;
+}
+td:last-child , th:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+td{
+    line-height: 38px;
+}
