@@ -100,7 +100,7 @@ function showSkills() {
     // show array of skills
     $(".showSkills").html("");
     for (let i = 0; i < skillList.length; i++) {
-        let skillNode = `<button type="button" id="${i}" class="btn btn-secondary disabled me-2 col-md-2 col-3">${skillList[i]}</button>`;
+        let skillNode = `<button ondblClick="removeSkill(this.id)" type="button" id="${i}" class="btn btn-secondary skillBadge me-2 col-md-2 col-3">${skillList[i]}</button>`;
         $(".showSkills").append(skillNode);
     }
 }
@@ -127,4 +127,8 @@ function ageCalculator() {
     var date = document.getElementById('date').value;
     var current = +new Date(date);
     personsAge = Math.floor(((Date.now() - current) / (31557600000)));
+}
+function removeSkill (index) {
+    skillList.splice(index, 1)
+    showSkills()
 }
