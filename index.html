@@ -18,7 +18,7 @@
                 <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
                     <h3>فرم ثبت نام</h3>
                     <div class="card">
-                        <form class="form-card" onsubmit="event.preventDefault()">
+                        <!-- <form class="form-card" > -->
                             <div class="row justify-content-between text-left">
                                 <div class="form-group col-md-6 flex-column d-flex mt-3">
                                     <label class="form-control-label px-3"><span class="text-danger"> *</span>نام</label>
@@ -28,8 +28,6 @@
                                     <label class="form-control-label px-3"><span class="text-danger"> *</span>نام خانوادگی</label>
                                     <input class="input form-control" type="text" id="lname" name="lname" />
                                 </div>
-
-                                <form >
                                     <div class="form-group col-md-6 flex-column d-flex mt-3">
                                         <label class="form-control-label px-3"><span class="text-danger"> *</span>مهارت ها</label>
                                         <div class="d-flex flex-row-reverse">
@@ -45,7 +43,6 @@
                                             />
                                         </div>
                                     </div>
-                                </form>
                                 <div class="form-group col-md-6 flex-column d-flex mt-3">
                                     <label class="form-control-label px-3"><span class="text-danger"> *</span>تاریخ تولد</label>
                                     <input class="input form-control" type="date" id="date" name="birth"  />
@@ -65,11 +62,13 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>
         </div>
+        <p id="resultBday"></p>
+<input type="date" name="bday" id="bday" onchange="submitBday()">
         <a id="redirect" style="opacity: 0;" href="./pages/showInform.html"></a>
     </body>
 
