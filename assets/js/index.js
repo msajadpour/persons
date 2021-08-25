@@ -1,18 +1,47 @@
-var data = [];
-var formsTag = $(".input");
-$("#submitPerson").on("click", function () { //click for submit form
-    validation(); //validate form
-    if(skillList.length == 0 ){ // check skill list is empty or not
-        isValid(false , "#skill")
-    }else{
-        isValid(true , "#skill")
-    }
-});
 
+var persons = []
+var person= {};
+var dataToCheckEmpty = []
+var skillList = [];
+var isRepetetive = false;
+var formsTag = $(".input");
+
+
+// onsubmit form 
+$("#submitPerson").on("click", function () { 
+    validation(); //validate form
+    
+});
+function setData() {
+    let fname = $("#fname").val()
+    let lname = $("#lname").val()
+    let skills = skillList
+    let date = $("#date").val()
+    person= {
+        fname, 
+        lname,
+        date,
+        skills,
+    }
+    skillsValidation()
+    if ( dataToCheckEmpty.includes("") || skillList.length == 0) {// to check non of inputs is empty and skill list is not empty
+        
+    } else {
+        // data.skills = skillList
+        persons.push(person)
+        localStorage.setItem('personsData' , JSON.stringify(persons))
+        console.log(JSON.parse(localStorage.getItem("personsData")))
+        dataCleaner()
+
+    }
+
+}
 function validation() {
-    data = []; // empty to dbl chek
+     // empty to dbl chek
+     dataToCheckEmpty = []
     for (let i = 0; i < formsTag.length; i++) {
-        data.push(formsTag[i].value); // get value of each input and push to "data" array
+        dataToCheckEmpty.push(formsTag[i].value)
+         // get value of each input and push to "data" array
         if (formsTag[i].value == "") {
             // to check wich input is empty
             formsTag[i].classList.add("is-invalid");
@@ -22,20 +51,22 @@ function validation() {
             formsTag[i].classList.add("is-valid");
         }
     }
-    if (data.includes("") || skillList.length == 0) {// to check non of inputs is empty and skill list is not empty
-        
-    } else {
-        data.push(skillList)
-        localStorage.setItem('personsData' , JSON.stringify(data))
-        console.log(JSON.parse(localStorage.getItem("personsData")))
+    setData()
+}
+function skillsValidation(status){
+    if(status === "none"){
+        $("#skill").removeClass("is-valid")
+    }else{
+        if(skillList.length == 0 ){ // check skill list is empty or not
+            isValid(false , "#skill")
+        }else{
+            isValid(true , "#skill")
+        }
     }
-
 }
 
-
-var skillList = [];
-var isRepetetive = false;
-$("#addSkill").on("click", function () { //handle skills badge and validation them
+//handle skills badge and validation them
+$("#addSkill").on("click", function () { 
     let skill = $("#skill").val();
     if (skill !== "") {
         if (skillList.length > 0) {
@@ -79,3 +110,18 @@ function isValid(status , id) {
         $(id).addClass("is-invalid");
     }
 }
+
+function dataCleaner (){
+    let node = $(".input")
+    for(let i = 0 ; i < node.length ; i++){
+        node[i].value = ""
+        node[i].classList.remove("is-valid")
+    }
+    skillList = []
+    skillsValidation("none")
+    showSkills()
+}        
+$("#showPersons").on('click' , function(){
+    console.log("clicked")
+    document.getElementById("redirect").click()
+})
